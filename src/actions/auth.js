@@ -1,5 +1,5 @@
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-export const LOGIN_FAIL = 'LOGIN_FAIL';
+// export const LOGIN_FAIL = 'LOGIN_FAIL';
 // export const NOT_AUTHORIZED = 'NOT_AUTHORIZED';
 
 const loginSuccess = (data) => ({ type: LOGIN_SUCCESS, data });
@@ -15,10 +15,10 @@ export const loginViaFacebook = () => {
       /* eslint-disable */
       FB.login((response) => {
         if (response.status === 'connected') {
-          localStorage.setItem('accessToken', response.authResponse.accessToken); // TODO change to BE
+          localStorage.setItem('auth', JSON.stringify(response.authResponse)); // TODO change to BE
           dispatch(loginSuccess(response.authResponse));
         }
-      });
+      }, { scope: 'public_profile' });
     }
   };
 };

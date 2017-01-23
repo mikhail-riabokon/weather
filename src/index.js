@@ -6,9 +6,11 @@ import React from 'react';
 import routes from './routes';
 import store from './store';
 
-ReactDOM.render(
-  <Provider store={store}>
-    <Router routes={routes} history={browserHistory} />
-  </Provider>,
-  document.getElementById('root')
-);
+window.startApp = () => {
+  ReactDOM.render(
+    <Provider store={store}>
+      <Router routes={routes} history={browserHistory} />
+    </Provider>,
+    document.getElementById('root')
+  );
+}

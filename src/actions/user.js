@@ -10,16 +10,12 @@ export const fetchUserData = () => {
     const state = getState();
 
     if (state.auth.accessToken) {
-      console.log('fetch data');
-
       /* eslint-disable */
-    //   FB.api(`/me/?access_token=${state.auth.accessToken}`, function(response) {
-    //     if (response) {
-    //       console.log('response 1', response);
-     //
-    //       dispatch(setUserData(response));
-    //     }
-    //  });
+      FB.api(`/${state.auth.userID}/picture/type="small"&access_token=${state.auth.accessToken}`, function(response) {
+        if (response && !response.error) {
+          dispatch(setUserData(response));
+        }
+     });
     }
   }
 };

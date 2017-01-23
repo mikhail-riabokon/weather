@@ -2,11 +2,11 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import * as reducers from './reducers';
 
-const accessToken = localStorage.getItem('accessToken');
+const auth = JSON.parse(localStorage.getItem('auth')) || {};
 const initialState = {
   auth: {
-    accessToken: accessToken,
-    isAuthenticated: Boolean(accessToken),
+    ...auth,
+    isAuthenticated: Boolean(auth.accessToken),
   },
 };
 
@@ -15,5 +15,7 @@ const store = createStore(
   initialState,
   applyMiddleware(thunk)
 );
+
+window.store = store; // TODO: remove it;
 
 export default store;

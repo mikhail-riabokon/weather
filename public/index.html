@@ -12,12 +12,11 @@
         FB.init({
           appId      : '1231235680290851',
           xfbml      : true,
-          version    : 'v2.8',
-          onInitComplete: function() {
-            debugger;
-          }
+          version    : 'v2.8'
         });
         FB.AppEvents.logPageView();
+
+        startApp();
       };
 
       (function(d, s, id){
