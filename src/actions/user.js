@@ -1,3 +1,5 @@
+import facebookApi from '../api/facebook';
+
 export const SET_USER_DATA = 'SET_USER_DATA';
 
 export const setUserData = (data) => ({
@@ -7,15 +9,24 @@ export const setUserData = (data) => ({
 
 export const fetchUserData = () => {
   return (dispatch, getState) => {
-    const state = getState();
+    const { auth } = getState();
 
-    if (state.auth.accessToken) {
-      /* eslint-disable */
-      FB.api(`/${state.auth.userID}/picture/type="small"&access_token=${state.auth.accessToken}`, function(response) {
-        if (response && !response.error) {
-          dispatch(setUserData(response));
-        }
-     });
+    if (auth.accessToken && auth.userID) {
+      Promise.all([
+        facebookApi.getUserData(auth),
+        facebookApi.getUserPicture(auth)
+      ])
+      .then((response) => {
+        const data = {
+          ...response[0],
+          ...response[1],
+        };
+
+        dispatch(setUserData(data));
+      })
+      .catch((response) => {
+        console.log('handle error', response);
+      });
     }
   }
 };

@@ -1,24 +1,22 @@
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-// export const LOGIN_FAIL = 'LOGIN_FAIL';
-// export const NOT_AUTHORIZED = 'NOT_AUTHORIZED';
+import facebookApi from '../api/facebook';
 
-const loginSuccess = (data) => ({ type: LOGIN_SUCCESS, data });
-// const notAuthorized = () => ({ type: NOT_AUTHORIZED });
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+
+const loginSuccess = (data = {}) => ({ type: LOGIN_SUCCESS, data });
 
 export const loginViaFacebook = () => {
   return (dispatch, getState) => {
     const state = getState();
 
-    if (state.auth.isAuthenticated) {
-      dispatch(loginSuccess());
-    } else {
-      /* eslint-disable */
-      FB.login((response) => {
-        if (response.status === 'connected') {
-          localStorage.setItem('auth', JSON.stringify(response.authResponse)); // TODO change to BE
+    if (!state.auth.isAuthenticated) {
+      facebookApi.login({ scope: 'public_profile' })
+        .then((response) => {
+          localStorage.setItem('auth', JSON.stringify(response.authResponse));
           dispatch(loginSuccess(response.authResponse));
-        }
-      }, { scope: 'public_profile' });
+        })
+        .catch((response) => {
+          console.log('login error', response);
+        });
     }
   };
 };
