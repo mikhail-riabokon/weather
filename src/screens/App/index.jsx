@@ -1,7 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as userActions from '../../actions/user';
 
 class AppScreen extends React.Component {
   componentWillMount() {
@@ -35,8 +33,4 @@ const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  userActions: bindActionCreators(userActions, dispatch),
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(AppScreen);
+export default connect(mapStateToProps)(AppScreen);

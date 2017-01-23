@@ -6,12 +6,16 @@
     <title>Images map</title>
   </head>
   <body>
+    <div id="root"></div>
     <script>
       window.fbAsyncInit = function() {
         FB.init({
           appId      : '1231235680290851',
           xfbml      : true,
-          version    : 'v2.8'
+          version    : 'v2.8',
+          onInitComplete: function() {
+            debugger;
+          }
         });
         FB.AppEvents.logPageView();
       };
@@ -24,6 +28,5 @@
          fjs.parentNode.insertBefore(js, fjs);
        }(document, 'script', 'facebook-jssdk'));
     </script>
-    <div id="root"></div>
   </body>
 </html>
