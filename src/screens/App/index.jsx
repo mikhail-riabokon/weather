@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Header from './components/Header';
 
 class AppScreen extends React.Component {
   componentWillMount() {
@@ -19,11 +20,19 @@ class AppScreen extends React.Component {
     router.push(`/${route}`);
   }
 
+  get header() {
+    return this.props.isAuthenticated ? <Header/> : null;
+  }
+
   render() {
     return (
-      <div className="container">
-        <h1>App</h1>
-        { this.props.children }
+      <div className="container-fluid">
+        { this.header }
+        <div className="row">
+          <div className="container">
+            { this.props.children }
+          </div>
+        </div>
       </div>
     );
   }

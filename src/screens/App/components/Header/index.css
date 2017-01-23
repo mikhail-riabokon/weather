@@ -1,0 +1,8 @@
+.header .username {
+  margin-right: 5px;
+}
+
+.header .fa-sign-out {
+  padding: 15px;
+  cursor: pointer;
+}
