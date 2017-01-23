@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as userActions from '../../../../actions/user';
+import * as authActions from '../../../../actions/auth';
 
 class MapScreen extends React.Component {
   componentWillMount() {
@@ -18,6 +19,7 @@ class MapScreen extends React.Component {
     return (
       <div>
         <h1>Map</h1>
+        <h2 onClick={this.props.authActions.logOut}>LOg out</h2>
         <div>
           {JSON.stringify(this.props.user, null, 4) }
         </div>
@@ -31,6 +33,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  authActions: bindActionCreators(authActions, dispatch),
   userActions: bindActionCreators(userActions, dispatch),
 });
 

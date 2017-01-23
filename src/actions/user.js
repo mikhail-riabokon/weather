@@ -1,4 +1,5 @@
 import facebookApi from '../api/facebook';
+import { logOut } from './auth';
 
 export const SET_USER_DATA = 'SET_USER_DATA';
 
@@ -26,6 +27,7 @@ export const fetchUserData = () => {
       })
       .catch((response) => {
         console.log('handle error', response);
+        dispatch(logOut());
       });
     }
   }
