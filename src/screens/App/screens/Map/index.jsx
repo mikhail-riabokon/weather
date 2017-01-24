@@ -8,17 +8,29 @@ import ImageMap from './components/ImageMap';
 import LocationError from './components/LocationError';
 
 class MapScreen extends React.Component {
-  componentWillMount() {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      loadingMap: this.isSupportNavigation,
+    };
+
     this.checkUserData();
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (Object.keys(newProps.user.geolocation).length > 0) {
+      this.setState({ loadingMap: false });
+    }
   }
 
   checkUserData() {
     if (Object.keys(this.props.user).length === 0) {
       this.props.userActions.fetchUserData();
+    }
 
-      if (this.isSupportNavigation) {
-        this.props.userActions.getUserLocation();
-      }
+    if (this.isSupportNavigation) {
+      this.props.userActions.getUserLocation();
     }
   }
 
@@ -30,15 +42,25 @@ class MapScreen extends React.Component {
     const { geolocation } = this.props.user;
     const isLocationEmpty = (Object.keys(geolocation).length === 0);
 
-    return ((isLocationEmpty || geolocation.error))
-      ? <LocationError getUserLocation={this.props.userActions.getUserLocation} />
-      : <ImageMap user={this.props.user} />
+    if (this.state.loadingMap) {
+      return this.loading;
+    } else {
+      return ((isLocationEmpty || geolocation.error))
+        ? <LocationError getUserLocation={this.props.userActions.getUserLocation} />
+        : <ImageMap user={this.props.user} />
+    }
+  }
+
+  get loading() {
+    return (
+      <h1>Loading</h1>
+    );
   }
 
   render() {
     const childItem = this.isSupportNavigation
       ? this.imageMap
-      : <UnSupportableMessage />
+      : <UnSupportableMessage />;
 
     return (
       <div>

@@ -13,20 +13,18 @@ class AppScreen extends React.Component {
     }
   }
 
-  checkAuth(/*props*/) {
-    // const { isAuthenticated, router } = props || this.props;
-    // const currentLocation = router.getCurrentLocation().pathname.substr(1);
+  checkAuth(props) {
+    const { isAuthenticated, router } = props || this.props;
+    const currentLocation = router.getCurrentLocation().pathname.substr(1);
 
     // TODO enable and refactor it;
-    // if (isAuthenticated) {
-    //   if (currentLocation !== 'map') {
-    //     router.replace('map');
-    //   }
-    // } else {
-    //   if (currentLocation === 'map') {
-    //     router.replace('login');
-    //   }
-    // }
+    if (isAuthenticated) {
+      if (currentLocation !== 'map') {
+        router.replace('map');
+      }
+    } else {
+      router.replace('login');
+    }
   }
 
   get header() {
