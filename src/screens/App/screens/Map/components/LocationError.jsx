@@ -11,4 +11,8 @@ function LocationError(props) {
   );
 }
 
+LocationError.propTypes = {
+  getUserLocation: React.PropTypes.func.isRequired,
+};
+
 export default LocationError;

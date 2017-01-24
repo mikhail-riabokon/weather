@@ -20,4 +20,16 @@ function ImageMap(props) {
   );
 }
 
+ImageMap.propTypes = {
+  user: React.PropTypes.shape({
+    picture: React.PropTypes.shape({
+      url: React.PropTypes.string,
+    }),
+  }),
+  geolocation: React.PropTypes.shape({
+    latitude: React.PropTypes.number.isRequired,
+    longitude: React.PropTypes.number.isRequired,
+  }),
+};
+
 export default ImageMap;

@@ -15,11 +15,14 @@ function Header(props) {
         </h4>
       </div>
     </div>
-  )
+  );
 }
 
 Header.propTypes = {
   logOut: React.PropTypes.func.isRequired,
+  user: React.PropTypes.shape({
+    name: React.PropTypes.string,
+  }),
 };
 
 const mapStateToProps = (state) => ({

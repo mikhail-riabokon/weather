@@ -13,4 +13,8 @@ function UserPicture(props) {
   )
 }
 
+UserPicture.propTypes = {
+  pictureUrl: React.PropTypes.string,
+};
+
 export default UserPicture;

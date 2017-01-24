@@ -16,7 +16,7 @@ class AppScreen extends React.Component {
   checkAuth(props) {
     const { isAuthenticated, router } = props || this.props;
     const currentLocation = router.getCurrentLocation().pathname.substr(1);
-    
+
     if (isAuthenticated) {
       if (currentLocation !== 'map') {
         router.replace('map');
@@ -43,6 +43,11 @@ class AppScreen extends React.Component {
     );
   }
 }
+
+AppScreen.propTypes = {
+  isAuthenticated: React.PropTypes.bool,
+  router: React.PropTypes.object.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,

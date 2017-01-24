@@ -28,7 +28,7 @@ class MapScreen extends React.Component {
 
   checkUserData() {
     this.props.userActions.fetchUserData();
-    
+
     if (this.isSupportNavigation) {
       this.props.userActions.getUserLocation();
     }
@@ -65,6 +65,20 @@ class MapScreen extends React.Component {
     );
   }
 }
+
+MapScreen.propTypes = {
+  user: React.PropTypes.shape({
+    picture: React.PropTypes.shape({
+      url: React.PropTypes.string,
+    }),
+    geolocation: React.PropTypes.shape({
+      latitude: React.PropTypes.number,
+      longitude: React.PropTypes.number,
+    }),
+  }),
+  authActions: React.PropTypes.object,
+  userActions: React.PropTypes.object,
+};
 
 const mapStateToProps = (state) => ({
   user: state.user,
