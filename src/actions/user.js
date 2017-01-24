@@ -2,6 +2,12 @@ import facebookApi from '../api/facebook';
 import { logOut } from './auth';
 
 export const SET_USER_DATA = 'SET_USER_DATA';
+export const USER_GEO_LOCATION_ERROR = 'USER_GEO_LOCATION_ERROR';
+
+const getUserLocationError = (error) => ({
+  type: USER_GEO_LOCATION_ERROR,
+  error,
+});
 
 export const setUserData = (data) => ({
   type: SET_USER_DATA,
@@ -20,7 +26,7 @@ export const fetchUserData = () => {
       .then((response) => {
         const data = {
           ...response[0],
-          ...response[1],
+          picture: response[1].data,
         };
 
         dispatch(setUserData(data));
@@ -31,4 +37,24 @@ export const fetchUserData = () => {
       });
     }
   }
+};
+
+
+
+export const getUserLocation = () => {
+  return (dispatch) => {
+    navigator.geolocation.getCurrentPosition(
+      (response) => {
+        console.log('ress');
+      },
+      (error) => {
+        console.log('res s', error);
+
+        dispatch(getUserLocationError(error));
+      },
+      {
+        timeout: 1000,
+      }
+    );
+  };
 };

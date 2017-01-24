@@ -17,7 +17,9 @@ class AppScreen extends React.Component {
     const { isAuthenticated, router } = props || this.props;
     const route = isAuthenticated ? 'map' : 'login';
 
-    router.push(`/${route}`);
+    // router.push(`/${route}`);
+    console.log('route', route);
+    router.push(`/map`);
   }
 
   get header() {
