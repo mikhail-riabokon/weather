@@ -1,3 +1,9 @@
-.login .btn-facebook {
-  margin-top: 15px;
+.login .login-form {
+  margin-top: 160px;
+  padding: 5px 15px 15px 15px;
+  border: 1px solid #dcdcdc;
+}
+
+.login .login-form .login-form-title {
+  margin-bottom: 30px;
 }

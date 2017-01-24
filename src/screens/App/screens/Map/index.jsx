@@ -4,8 +4,9 @@ import { bindActionCreators } from 'redux';
 import * as userActions from '../../../../actions/user';
 import * as authActions from '../../../../actions/auth';
 import UnSupportableMessage from './components/UnSupportableMessage';
-import ImageMap from './components/ImageMap';
+import ImageMap from './components/ImageMap/index.jsx';
 import LocationError from './components/LocationError';
+import './index.css';
 
 class MapScreen extends React.Component {
   constructor(props) {
@@ -63,9 +64,10 @@ class MapScreen extends React.Component {
       : <UnSupportableMessage />;
 
     return (
-      <div>
-        <h1>Map</h1>
-        { childItem }
+      <div className="container-fluid">
+        <div className="map-container">
+          { childItem }
+        </div>
       </div>
     );
   }

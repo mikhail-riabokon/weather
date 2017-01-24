@@ -9,14 +9,18 @@ function LoginScreen(props) {
       <div className="col-xs-12 col-sm-6 col-sm-offset-3">
         <div className="row">
           <div className="col-xs-12">
-            <h1>Images map</h1>
-          </div>
-          <div className="col-xs-12">
-            <button
-              className="btn btn-block btn-lg btn-social btn-facebook"
-              onClick={props.loginViaFacebook}>
-               <span className="fa fa-facebook"></span> Sign in with Facebook
-             </button>
+            <div className="login-form">
+              <div className="login-form-title">
+                <h1>Images map</h1>
+              </div>
+              <div className="login-form-control">
+                <button
+                  className="btn btn-block btn-lg btn-social btn-facebook"
+                  onClick={props.loginViaFacebook}>
+                   <span className="fa fa-facebook"></span> Sign in with Facebook
+                 </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
