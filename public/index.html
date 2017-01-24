@@ -19,7 +19,12 @@
         });
         FB.AppEvents.logPageView();
 
-        setTimeout(startApp, 0);
+        var tryToStart = setInterval(function () {
+          if ('startApp' in window) {
+            clearInterval(tryToStart);
+            startApp();
+          }
+        }, 500);
       };
 
       (function(d, s, id){
