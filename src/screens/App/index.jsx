@@ -3,10 +3,9 @@ import { connect } from 'react-redux';
 import Header from './components/Header';
 
 class AppScreen extends React.Component {
-  // TODO: check it with full flow
-  // componentWillMount() {
-  //   this.checkAuth();
-  // }
+  componentWillMount() {
+    this.checkAuth();
+  }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.isAuthenticated !== nextProps.isAuthenticated) {
@@ -14,13 +13,20 @@ class AppScreen extends React.Component {
     }
   }
 
-  checkAuth(props) {
-    const { isAuthenticated, router } = props || this.props;
-    const route = isAuthenticated ? 'map' : 'login';
+  checkAuth(/*props*/) {
+    // const { isAuthenticated, router } = props || this.props;
+    // const currentLocation = router.getCurrentLocation().pathname.substr(1);
 
-    // router.push(`/${route}`);
-    console.log('route', route);
-    router.push(`/map`);
+    // TODO enable and refactor it;
+    // if (isAuthenticated) {
+    //   if (currentLocation !== 'map') {
+    //     router.replace('map');
+    //   }
+    // } else {
+    //   if (currentLocation === 'map') {
+    //     router.replace('login');
+    //   }
+    // }
   }
 
   get header() {
