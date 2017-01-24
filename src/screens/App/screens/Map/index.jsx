@@ -27,10 +27,8 @@ class MapScreen extends React.Component {
   }
 
   checkUserData() {
-    if (Object.keys(this.props.user).length === 0) {
-      this.props.userActions.fetchUserData();
-    }
-
+    this.props.userActions.fetchUserData();
+    
     if (this.isSupportNavigation) {
       this.props.userActions.getUserLocation();
     }
