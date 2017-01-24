@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import Header from './components/Header';
 
 class AppScreen extends React.Component {
-  componentWillMount() {
-    this.checkAuth();
-  }
+  // TODO: check it with full flow
+  // componentWillMount() {
+  //   this.checkAuth();
+  // }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.isAuthenticated !== nextProps.isAuthenticated) {

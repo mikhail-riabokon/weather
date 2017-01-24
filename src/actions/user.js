@@ -39,21 +39,28 @@ export const fetchUserData = () => {
   }
 };
 
-
-
 export const getUserLocation = () => {
   return (dispatch) => {
     navigator.geolocation.getCurrentPosition(
       (response) => {
-        console.log('ress');
+        const {
+          accuracy,
+          latitude,
+          longitude
+        } = response.coords
+
+        const data = {
+          geolocation: {
+            accuracy,
+            latitude,
+            longitude,
+          },
+        };
+
+        dispatch(setUserData(data));
       },
       (error) => {
-        console.log('res s', error);
-
         dispatch(getUserLocationError(error));
-      },
-      {
-        timeout: 1000,
       }
     );
   };

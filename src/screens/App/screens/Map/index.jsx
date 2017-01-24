@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as userActions from '../../../../actions/user';
 import * as authActions from '../../../../actions/auth';
+import UnSupportableMessage from './components/UnSupportableMessage';
+import ImageMap from './components/ImageMap';
+import LocationError from './components/LocationError';
 
 class MapScreen extends React.Component {
   componentWillMount() {
@@ -23,41 +26,19 @@ class MapScreen extends React.Component {
     return ('geolocation' in navigator );
   }
 
-  get locationError() {
-    return (
-      <div>
-        <p>Sorry, but we can not procced without your location.</p>
-        <p><a href="#" onClick={this.props.userActions.getUserLocation}>Please try again</a> if you allow get your location</p>
-      </div>
-    );
-  }
-
-  get map() {
-    return (
-      <div>
-        <h1>place for map</h1>
-      </div>
-    );
-  }
-
-  get unSupportableMessage() {
-    return (
-      <p>Unfortunately, your browser is too old, try to update it or download the latest one</p>
-    );
-  }
-
   get imageMap() {
-    const isLocationEmpty = (Object.keys(this.props.user.geolocation).length === 0);
+    const { geolocation } = this.props.user;
+    const isLocationEmpty = (Object.keys(geolocation).length === 0);
 
-    return ((isLocationEmpty || this.props.user.geolocation.error))
-      ? this.locationError
-      : this.map;
+    return ((isLocationEmpty || geolocation.error))
+      ? <LocationError getUserLocation={this.props.userActions.getUserLocation} />
+      : <ImageMap user={this.props.user} />
   }
 
   render() {
     const childItem = this.isSupportNavigation
       ? this.imageMap
-      : this.unSupportableMessage
+      : <UnSupportableMessage />
 
     return (
       <div>
