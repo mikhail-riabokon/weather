@@ -6,6 +6,7 @@ import * as authActions from '../../../../actions/auth';
 import UnSupportableMessage from './components/UnSupportableMessage';
 import ImageMap from './components/ImageMap/index.jsx';
 import LocationError from './components/LocationError';
+import Loading from '../../components/Loading';
 import './index.css';
 
 class MapScreen extends React.Component {
@@ -44,18 +45,12 @@ class MapScreen extends React.Component {
     const isLocationEmpty = (Object.keys(geolocation).length === 0);
 
     if (this.state.loadingMap) {
-      return this.loading;
+      return <Loading />;
     } else {
       return ((isLocationEmpty || geolocation.error))
         ? <LocationError getUserLocation={this.props.userActions.getUserLocation} />
-        : <ImageMap user={this.props.user} />
+        : <ImageMap user={this.props.user} />;
     }
-  }
-
-  get loading() {
-    return (
-      <h1>Loading</h1>
-    );
   }
 
   render() {

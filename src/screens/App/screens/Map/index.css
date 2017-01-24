@@ -1,8 +1,13 @@
 .map-container {
-  background-color: red;
   position: absolute;
   bottom: 10%;
   left: 10%;
   right: 10%;
   top: 10%;
+}
+
+.map-container .loading {
+  position: absolute;
+  width: 100%;
+  top: 50%;
 }
