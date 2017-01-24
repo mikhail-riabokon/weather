@@ -16,8 +16,7 @@ class AppScreen extends React.Component {
   checkAuth(props) {
     const { isAuthenticated, router } = props || this.props;
     const currentLocation = router.getCurrentLocation().pathname.substr(1);
-
-    // TODO enable and refactor it;
+    
     if (isAuthenticated) {
       if (currentLocation !== 'map') {
         router.replace('map');

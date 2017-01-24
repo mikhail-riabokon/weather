@@ -4,11 +4,13 @@ import * as authActions from '../../../../actions/auth';
 import './index.css';
 
 function Header(props) {
+  const name = props.user.name || null;
+
   return (
     <div className="row header">
       <div className="col-xs-12">
         <h4 className="text-right">
-          <span className="username">Welcome user</span>
+          <span className="username">Welcome {name}</span>
           <i className="fa fa-sign-out" aria-hidden="true" onClick={props.logOut}></i>
         </h4>
       </div>
@@ -20,4 +22,8 @@ Header.propTypes = {
   logOut: React.PropTypes.func.isRequired,
 };
 
-export default connect(null, authActions)(Header);
+const mapStateToProps = (state) => ({
+  user: state.user,
+});
+
+export default connect(mapStateToProps, authActions)(Header);
