@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
 import FilterByPlace from './components/FilterByPlace';
 import FilterByDate from './components/FilterByDate';
 import { placesSelector } from '../../../../selectors';
@@ -10,7 +11,7 @@ class Filter extends React.Component {
 
     this.state = {
       place: '',
-      date: '',
+      date: Date.now(),
     };
 
     this.setPlace = this.setPlace.bind(this);
@@ -18,7 +19,7 @@ class Filter extends React.Component {
   }
 
   setDate(date) {
-    this.setState({ date });
+    this.setState({ date: moment(date).valueOf() });
   }
 
   setPlace(place) {
@@ -33,7 +34,7 @@ class Filter extends React.Component {
             places={ this.props.places }
             onPlaceSelected={ this.setPlace }
           />
-          <FilterByDate onDateSelected={ this.setDate } />
+          <FilterByDate selected={ this.state.date } onDateSelected={ this.setDate } />
         </div>
         <div>
           Looking weather in { this.state.place } on { this.state.date }

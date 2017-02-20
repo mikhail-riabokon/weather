@@ -1,14 +1,12 @@
 import React from 'react';
 import DatePicker from 'react-datepicker';
+import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 
 function FilterByDate(props) {
   const options = {
-    onChange: (selectedDate) => {
-      const dateFormat = 'YYYY-MM-DD HH:mm:ss';
-
-      props.onDateSelected(selectedDate.format(dateFormat));
-    },
+    selected: moment(props.selected),
+    onChange: props.onDateSelected,
   };
 
   return (
@@ -19,6 +17,7 @@ function FilterByDate(props) {
 }
 
 FilterByDate.propTypes = {
+  selected: React.PropTypes.number.isRequired,
   onDateSelected: React.PropTypes.func.isRequired,
 };
 
