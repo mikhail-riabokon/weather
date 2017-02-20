@@ -1,6 +1,13 @@
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import React from 'react';
+import * as weatherActions from '../../actions/weather';
 
 class AppScreen extends React.Component {
+  componentWillMount() {
+    this.props.weatherActions.getInitialState();
+  }
+
   render() {
     return (
       <div className="container-fluid">
@@ -10,4 +17,9 @@ class AppScreen extends React.Component {
   }
 }
 
-export default AppScreen;
+const mapStateToProps = ({ weather }) => ({ weather });
+const mapDispatchToProps = (dispatch) => ({
+  weatherActions: bindActionCreators(weatherActions, dispatch),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppScreen);

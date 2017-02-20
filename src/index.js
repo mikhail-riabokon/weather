@@ -4,13 +4,11 @@ import { Router } from 'react-router';
 import ReactDOM from 'react-dom';
 import React from 'react';
 import routes from './routes';
-import store from './store';
+import store from './store'
 
-window.startApp = () => {
-  ReactDOM.render(
-    <Provider store={store}>
-      <Router routes={routes} history={browserHistory} />
-    </Provider>,
-    document.getElementById('root')
-  );
-}
+ReactDOM.render(
+  <Provider store={store}>
+    <Router routes={routes} history={browserHistory} />
+  </Provider>,
+  document.getElementById('root')
+);
