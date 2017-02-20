@@ -1,55 +1,54 @@
-import React from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import moment from 'moment';
+import React from 'react';
+import * as filterActions from '../../../../actions/filter';
+import { placesSelector } from '../../../../selectors';
 import FilterByPlace from './components/FilterByPlace';
 import FilterByDate from './components/FilterByDate';
-import { placesSelector } from '../../../../selectors';
 
-class Filter extends React.Component {
-  constructor(props) {
-    super(props);
+function Filter(props) {
+  const setDate = (selectedDate) => {
+    props.filterActions.setDate(selectedDate.valueOf())
+  };
 
-    this.state = {
-      place: '',
-      date: Date.now(),
-    };
-
-    this.setPlace = this.setPlace.bind(this);
-    this.setDate = this.setDate.bind(this);
-  }
-
-  setDate(date) {
-    this.setState({ date: moment(date).valueOf() });
-  }
-
-  setPlace(place) {
-    this.setState({ place });
-  }
-
-  render() {
-    return (
-      <div className="row">
-        <div className="col-xs-12">
-          <FilterByPlace
-            places={ this.props.places }
-            onPlaceSelected={ this.setPlace }
-          />
-          <FilterByDate selected={ this.state.date } onDateSelected={ this.setDate } />
-        </div>
-        <div>
-          Looking weather in { this.state.place } on { this.state.date }
-        </div>
+  return (
+    <div className="row">
+      <div className="col-xs-12">
+        <FilterByPlace
+          places={ props.places }
+          onPlaceSelected={ props.filterActions.setPlace }
+        />
+        <FilterByDate
+          selected={ props.filter.date }
+          onDateSelected={ setDate }
+        />
       </div>
-    );
-  }
+      <div>
+        Looking weather in { props.filter.place } on { props.filter.date }
+      </div>
+    </div>
+  );
 }
-
-const mapStateToProps = ({ weather }) => ({
-  places: placesSelector(weather)
-});
 
 Filter.propTypes = {
   places: React.PropTypes.array.isRequired,
+  filter: React.PropTypes.shape({
+    place: React.PropTypes.string,
+    date: React.PropTypes.number.isRequired,
+  }).isRequired,
+  filterActions: React.PropTypes.shape({
+    setPlace: React.PropTypes.func.isRequired,
+    setDate: React.PropTypes.func.isRequired,
+  }).isRequired,
 };
 
-export default connect(mapStateToProps)(Filter);
+const mapStateToProps = (state) => ({
+  places: placesSelector(state.weather),
+  filter: state.filter,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  filterActions: bindActionCreators(filterActions, dispatch),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Filter);

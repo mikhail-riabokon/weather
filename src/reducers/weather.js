@@ -9,4 +9,4 @@ export default createReducer(initialState, {
 
     return state;
   },
-})
+});
