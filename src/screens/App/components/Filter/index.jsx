@@ -5,15 +5,18 @@ import * as filterActions from '../../../../actions/filter';
 import { placesSelector } from '../../../../selectors';
 import FilterByPlace from './components/FilterByPlace';
 import FilterByDate from './components/FilterByDate';
+import './index.css';
 
 function Filter(props) {
   return (
-    <div className="row">
+    <div className="row filter">
       <div className="col-xs-12">
+        Show me weather in
         <FilterByPlace
           places={ props.places }
           onPlaceSelected={ props.filterActions.setPlace }
         />
+        on
         <FilterByDate
           selected={ props.filter.date }
           onDateSelected={ props.filterActions.setDate }

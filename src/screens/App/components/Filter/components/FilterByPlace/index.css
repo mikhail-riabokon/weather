@@ -1,0 +1,27 @@
+.filter-by-place {
+  margin-right: 10px;
+  position: relative;
+  min-width: 150px;
+  min-height: 7px;
+}
+
+.filter-by-place .typeahead {
+  position: absolute;
+  z-index: 2;
+  background-color: #fff;
+}
+
+.filter-by-place .typeahead ul {
+  list-style-type: none;
+  padding: 10px 5px 10px 15px;
+  margin: 0;
+}
+
+.filter-by-place .typeahead ul li:last-child {
+  margin-bottom: 0;
+}
+
+.filter-by-place .typeahead ul li {
+  margin-bottom: 10px;
+  line-height: 1.2;
+}

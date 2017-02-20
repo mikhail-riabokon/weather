@@ -1,7 +1,7 @@
-import React from 'react';
+import 'react-datepicker/dist/react-datepicker.css';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
-import 'react-datepicker/dist/react-datepicker.css';
+import React from 'react';
 
 function FilterByDate(props) {
   const onDateChanged = (selectedDate) => {
@@ -13,10 +13,11 @@ function FilterByDate(props) {
   const options = {
     selected: moment(props.selected),
     onChange: onDateChanged,
+    className: 'form-control',
   };
 
   return (
-    <div>
+    <div className="filter-by-date filter-item">
       <DatePicker {...options} />
     </div>
   );

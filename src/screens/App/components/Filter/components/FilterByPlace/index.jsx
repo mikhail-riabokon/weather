@@ -1,5 +1,6 @@
 import { Typeahead } from 'react-typeahead';
 import React from 'react';
+import './index.css';
 
 function FilterByPlace(props) {
   const onKeyUp = (event) => {
@@ -11,13 +12,16 @@ function FilterByPlace(props) {
   const options = {
     onOptionSelected: props.onPlaceSelected,
     options: props.places,
-    placeholder: 'Place',
+    placeholder: 'some place',
     maxVisible: 10,
+    customClasses: {
+      input: 'form-control',
+    },
     onKeyUp,
   };
 
   return (
-    <div className="filter-by-name">
+    <div className="filter-by-place filter-item">
       <Typeahead { ...options }  />
     </div>
   );

@@ -12,8 +12,12 @@ class AppScreen extends React.Component {
 
   render() {
     return (
-      <div className="container-fluid">
-        <h1>Weather in some country</h1>
+      <div className="container">
+        <div className="row">
+          <div className="col-xs-12">
+            <h1>Weather in Netherlands</h1>
+          </div>
+        </div>
         <Filter />
         <WeatherMap />
       </div>
