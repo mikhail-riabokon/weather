@@ -7,26 +7,30 @@ export const placesSelector = createSelector(
   (placeNames) => _.uniq(placeNames)
 );
 
-const weather = createSelector(
-  (state) => state,
-  (state) => state.weather
-)
-
-export const filteredResultsSelector = createSelector(
-  (state) => state.weather
-
-  (weather, filter) => {
+const weatherByDateSelector = createSelector(
+  ({ weather, filter }) => ({ weather, filter }),
+  ({ weather, filter }) => {
     if (_.size(weather) === 0) return [];
 
     const datetime = moment(filter.date).startOf('day').format('YYYY-MM-DD HH:mm:ss');
-    const results = _.filter(weather, { datetime });
 
-    debugger;
+    return _.filter(weather, { datetime });
+  }
+);
 
-    return results
+const filterPlaceSelector = createSelector(
+  ({ filter }) => filter,
+  (filter) => filter.place
+);
 
-  },
-  (weather, filter) => {
-    debugger;
+export const filteredResultsSelector = createSelector(
+  weatherByDateSelector,
+  filterPlaceSelector,
+  (weatherByDate, place) => {
+    if (_.size(weatherByDate) === 0) return [];
+
+    return place
+      ? _.filter(weatherByDate, { place_name: place })
+      : weatherByDate;
   }
 );
