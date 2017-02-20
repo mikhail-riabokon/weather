@@ -1,56 +1,13 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import Header from './components/Header';
 
 class AppScreen extends React.Component {
-  componentWillMount() {
-    this.checkAuth();
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (this.props.isAuthenticated !== nextProps.isAuthenticated) {
-      this.checkAuth(nextProps);
-    }
-  }
-
-  checkAuth(props) {
-    const { isAuthenticated, router } = props || this.props;
-    const currentLocation = router.getCurrentLocation().pathname.substr(1);
-
-    if (isAuthenticated) {
-      if (currentLocation !== 'map') {
-        router.replace('map');
-      }
-    } else {
-      router.replace('login');
-    }
-  }
-
-  get header() {
-    return this.props.isAuthenticated ? <Header/> : null;
-  }
-
   render() {
     return (
       <div className="container-fluid">
-        { this.header }
-        <div className="row">
-          <div className="container">
-            { this.props.children }
-          </div>
-        </div>
+        <h1>My app</h1>
       </div>
     );
   }
 }
 
-AppScreen.propTypes = {
-  isAuthenticated: React.PropTypes.bool,
-  router: React.PropTypes.object.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.isAuthenticated,
-});
-
-export default connect(mapStateToProps)(AppScreen);
+export default AppScreen;

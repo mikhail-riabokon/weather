@@ -5,35 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.min.css">
-    <title>Images map</title>
+    <title>Weather</title>
   </head>
   <body>
     <div id="root"></div>
-    <script>
-      window.fbAsyncInit = function() {
-        FB.init({
-          appId      : '1231235680290851',
-          xfbml      : true,
-          version    : 'v2.8'
-        });
-        FB.AppEvents.logPageView();
-
-        var tryToStart = setInterval(function () {
-          if ('startApp' in window) {
-            clearInterval(tryToStart);
-            startApp();
-          }
-        }, 500);
-      };
-
-      (function(d, s, id){
-         var js, fjs = d.getElementsByTagName(s)[0];
-         if (d.getElementById(id)) {return;}
-         js = d.createElement(s); js.id = id;
-         js.src = "//connect.facebook.net/en_US/sdk.js";
-         fjs.parentNode.insertBefore(js, fjs);
-       }(document, 'script', 'facebook-jssdk'));
-    </script>
   </body>
 </html>

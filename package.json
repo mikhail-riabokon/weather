@@ -1,5 +1,5 @@
 {
-  "name": "images-map",
+  "name": "weather",
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
@@ -17,12 +17,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  },
-  "engines" : {
-    "node" : "~6.*.*",
-    "npm" : "~3.*.*"
   },
   "author": "Mikhail Riabokon",
   "license": "UNLICENSED"
