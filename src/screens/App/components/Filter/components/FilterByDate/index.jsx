@@ -4,9 +4,15 @@ import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 
 function FilterByDate(props) {
+  const onDateChanged = (selectedDate) => {
+    if (selectedDate) {
+      props.onDateSelected(selectedDate.valueOf());
+    }
+  };
+
   const options = {
     selected: moment(props.selected),
-    onChange: props.onDateSelected,
+    onChange: onDateChanged,
   };
 
   return (

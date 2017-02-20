@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "google-map-react": "^0.22.3",
+    "lodash": "^4.17.4",
     "moment": "^2.17.1",
     "react": "^15.4.2",
     "react-datepicker": "^0.41.1",
@@ -16,8 +17,7 @@
     "react-typeahead": "^2.0.0-alpha.5",
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0",
-    "reselect": "^2.5.4",
-    "underscore": "^1.8.3"
+    "reselect": "^2.5.4"
   },
   "scripts": {
     "start": "react-scripts start",

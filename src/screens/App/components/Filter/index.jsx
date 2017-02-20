@@ -7,10 +7,6 @@ import FilterByPlace from './components/FilterByPlace';
 import FilterByDate from './components/FilterByDate';
 
 function Filter(props) {
-  const setDate = (selectedDate) => {
-    props.filterActions.setDate(selectedDate.valueOf())
-  };
-
   return (
     <div className="row">
       <div className="col-xs-12">
@@ -20,11 +16,8 @@ function Filter(props) {
         />
         <FilterByDate
           selected={ props.filter.date }
-          onDateSelected={ setDate }
+          onDateSelected={ props.filterActions.setDate }
         />
-      </div>
-      <div>
-        Looking weather in { props.filter.place } on { props.filter.date }
       </div>
     </div>
   );

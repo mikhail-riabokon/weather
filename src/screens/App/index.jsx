@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 import * as weatherActions from '../../actions/weather';
 import Filter from './components/Filter';
+import WeatherMap from './components/WeatherMap';
 
 class AppScreen extends React.Component {
   componentWillMount() {
@@ -14,6 +15,7 @@ class AppScreen extends React.Component {
       <div className="container-fluid">
         <h1>Weather in some country</h1>
         <Filter />
+        <WeatherMap />
       </div>
     );
   }
