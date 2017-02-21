@@ -10,6 +10,4 @@ const store = createStore(
   applyMiddleware(thunk)
 );
 
-window.store = store; // TODO remove it;
-
 export default store;

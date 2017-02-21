@@ -14,12 +14,13 @@ export const getInitialState = () => {
       },
     };
 
+    // TODO remove to sever side rendering
     fetch('/data.json', options)
       .then((response) => response.json())
       .then((responseJSON) => {
         window.responseJSON = responseJSON;
 
         dispath(setInitialState(responseJSON))
-      })
+      });
   };
 };

@@ -2,8 +2,7 @@ import { createReducer } from '../utils';
 import { SET_DATE, SET_PLACE } from '../actions/filter';
 
 const initialState = {
-  // date: Date.now(),
-  date: 1407445200000,
+  date: 1407445200000, //Date where data is available
   place: '',
 };
 

@@ -1,4 +1,5 @@
 import { bindActionCreators } from 'redux';
+import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import React from 'react';
 import * as filterActions from '../../../../actions/filter';
@@ -8,6 +9,18 @@ import FilterByDate from './components/FilterByDate';
 import './index.css';
 
 function Filter(props) {
+  const updateUrl = ({ place, date }) => {
+    const query = { place, date };
+
+    props.router.push({ pathname: '/', query });
+  };
+
+  const selectPlace = (selectedPlace) => {
+    updateUrl({ place: selectedPlace });
+
+    props.filterActions.setPlace(selectedPlace);
+  };
+
   return (
     <div className="row filter">
       <div className="col-xs-12">
@@ -15,7 +28,7 @@ function Filter(props) {
         <FilterByPlace
           places={ props.places }
           selected={ props.filter.place }
-          onPlaceSelected={ props.filterActions.setPlace }
+          onPlaceSelected={ selectPlace }
         />
         on
         <FilterByDate
@@ -48,4 +61,4 @@ const mapDispatchToProps = (dispatch) => ({
   filterActions: bindActionCreators(filterActions, dispatch),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Filter);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Filter));
