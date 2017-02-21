@@ -1,6 +1,8 @@
+import { bindActionCreators } from 'redux';
 import GoogleMap from 'google-map-react';
 import { connect } from 'react-redux';
 import React from 'react';
+import * as modalWindowActions from '../../../../actions/modalWindow';
 import { filteredResultsSelector } from '../../../../selectors';
 import PlaceWeather from './components/PlaceWeather';
 
@@ -9,13 +11,20 @@ const NETHERLAND_CORDS = {
   lng: 4.3921683,
 };
 
-function renderPlaceWeath(place, index) {
+function renderPlaceWeath(dispatch, place, index) {
   const cords = {
     lat: place.latitude,
     lng: place.longitude,
   };
 
-  return <PlaceWeather key={ index } { ...cords } { ...place } />;
+  return (
+    <PlaceWeather
+      key={index}
+      { ...cords }
+      { ...place }
+      { ...bindActionCreators(modalWindowActions, dispatch) }
+    />
+  );
 }
 
 function WeatherMap(props) {
@@ -32,7 +41,7 @@ function WeatherMap(props) {
   return (
     <div style={{ height: 800 }}>
       <GoogleMap {...googleMapOptions}>
-        { props.filteredPlaces.map(renderPlaceWeath) }
+        { props.filteredPlaces.map((...args) => renderPlaceWeath(props.dispatch, ...args)) }
       </GoogleMap>
     </div>
   );
@@ -45,6 +54,5 @@ WeatherMap.propTypes = {
 const mapStateToProps = (state) => ({
   filteredPlaces: filteredResultsSelector(state),
 });
-
 
 export default connect(mapStateToProps)(WeatherMap);

@@ -1,9 +1,10 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import React from 'react';
+import WeatherDetailsModalWindow from './components/WeatherDetailsModalWindow';
 import * as weatherActions from '../../actions/weather';
-import Filter from './components/Filter';
 import WeatherMap from './components/WeatherMap';
+import Filter from './components/Filter';
 
 class AppScreen extends React.Component {
   componentWillMount() {
@@ -12,14 +13,17 @@ class AppScreen extends React.Component {
 
   render() {
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col-xs-12">
-            <h1>Weather in Netherlands</h1>
+      <div className="app">
+        <div className="container">
+          <div className="row">
+            <div className="col-xs-12">
+              <h1>Weather in Netherlands</h1>
+            </div>
           </div>
+          <Filter />
+          <WeatherMap />
         </div>
-        <Filter />
-        <WeatherMap />
+        <WeatherDetailsModalWindow />
       </div>
     );
   }

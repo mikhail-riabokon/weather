@@ -3,14 +3,15 @@ import './index.css';
 
 function PlaceWeather(props) {
   const onClick = (event) => {
-    console.log('do somethigs');
-
-    // props.showPlaceWeather(props);
+    props.toogileWatherDetailsModalWindow({
+      isOpen: true,
+      details: props,
+    });
   };
 
   return (
     <div className="place-weather" onClick={onClick}>
-      <span className="glyphicon glyphicon-flag" aria-hidden="true"></span>
+      <i className="fa fa-flag" aria-hidden="true"></i>
     </div>
   );
 }
