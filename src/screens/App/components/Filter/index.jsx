@@ -11,7 +11,7 @@ function Filter(props) {
   return (
     <div className="row filter">
       <div className="col-xs-12">
-        Show me weather in
+        Show me
         <FilterByPlace
           places={ props.places }
           selected={ props.filter.place }

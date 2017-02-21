@@ -17,11 +17,7 @@ function PlaceWeather(props) {
 }
 
 PlaceWeather.propTypes = {
-  precipitation_probability: React.PropTypes.string.isRequired,
-  precipitation_mm: React.PropTypes.string.isRequired,
-  temperature_max: React.PropTypes.string.isRequired,
-  temperature_min: React.PropTypes.string.isRequired,
-  place_name: React.PropTypes.string.isRequired,
+  toogileWatherDetailsModalWindow: React.PropTypes.func.isRequired,
 };
 
 export default PlaceWeather;

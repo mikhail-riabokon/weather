@@ -9,13 +9,11 @@ const initialState = {
 };
 
 export default createReducer(initialState, {
-  [TOOGLE_WEATHER_DETAILS]: (state, action) => {
-    return {
-      ...state,
-      weatherDetailsModalWindow: {
-        details: {},
-        ...action.data,
-      },
-    }
-  },
+  [TOOGLE_WEATHER_DETAILS]: (state, action) => ({
+    ...state,
+    weatherDetailsModalWindow: {
+      details: {},
+      ...action.data,
+    },
+  }),
 });
