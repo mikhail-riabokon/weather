@@ -14,6 +14,7 @@ function Filter(props) {
         Show me weather in
         <FilterByPlace
           places={ props.places }
+          selected={ props.filter.place }
           onPlaceSelected={ props.filterActions.setPlace }
         />
         on

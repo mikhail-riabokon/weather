@@ -5,23 +5,39 @@
   min-height: 7px;
 }
 
-.filter-by-place .typeahead {
+.filter-by-place
+.react-autosuggest__container {
   position: absolute;
   z-index: 2;
   background-color: #fff;
 }
 
-.filter-by-place .typeahead ul {
+.filter-by-place
+.react-autosuggest__container
+.react-autosuggest__suggestions-list {
   list-style-type: none;
-  padding: 10px 5px 10px 15px;
+  padding: 0;
   margin: 0;
 }
 
-.filter-by-place .typeahead ul li:last-child {
+.filter-by-place
+.react-autosuggest__suggestions-list
+.react-autosuggest__suggestion:last-child {
   margin-bottom: 0;
 }
 
-.filter-by-place .typeahead ul li {
-  margin-bottom: 10px;
+.filter-by-place
+.react-autosuggest__container
+.react-autosuggest__suggestions-list
+.react-autosuggest__suggestion {
+  padding: 5px 5px 5px 15px;
   line-height: 1.2;
+  cursor: pointer;
+}
+
+.filter-by-place
+.react-autosuggest__container
+.react-autosuggest__suggestions-list
+.react-autosuggest__suggestion--focused {
+  background-color: #e2e2e2;
 }
