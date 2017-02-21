@@ -1,0 +1,7 @@
+.weather-map {
+  position: absolute;
+  top: 140px;
+  left: 50px;
+  right: 50px;
+  bottom: 25px;
+}

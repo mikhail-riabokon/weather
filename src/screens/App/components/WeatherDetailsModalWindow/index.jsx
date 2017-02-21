@@ -15,6 +15,18 @@ const prepareValue = (value) => {
   return value === 'NULL' ? 0 : value;
 };
 
+const getProbabilityClassName = (value) => {
+  let result = 'fa ';
+
+  if (value === 'NULL' || parseInt(value, 10) < 50) {
+    result += 'fa-smile-o';
+  } else {
+    result += 'fa-meh-o';
+  }
+
+  return result;
+};
+
 function WeatherDetailsModalWindow(props) {
   const {
     isOpen,
@@ -57,7 +69,7 @@ function WeatherDetailsModalWindow(props) {
           <div className="col-xs-6">
             <div className="row">
               <div className="col-xs-12">
-                <i className="fa fa-smile-o" aria-hidden="true"></i>&nbsp;
+                <i className={getProbabilityClassName(precipitation_probability)} aria-hidden="true"></i>&nbsp;
                 <span>Precipitation probability: </span><strong>{ prepareValue(precipitation_probability) }%</strong>
               </div>
             </div>

@@ -5,6 +5,7 @@ import React from 'react';
 import * as modalWindowActions from '../../../../actions/modalWindow';
 import { filteredResultsSelector } from '../../../../selectors';
 import PlaceWeather from './components/PlaceWeather';
+import  './index.css';
 
 const NETHERLAND_CORDS = {
   lat: 51.8937201,
@@ -39,7 +40,7 @@ function WeatherMap(props) {
   };
 
   return (
-    <div style={{ height: 800 }}>
+    <div className="weather-map">
       <GoogleMap {...googleMapOptions}>
         { props.filteredPlaces.map((...args) => renderPlaceWeath(props.dispatch, ...args)) }
       </GoogleMap>
